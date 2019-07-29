@@ -5,14 +5,16 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const currentLocationButton = function (props) {
-    const bottom = props?props:65;
+    const cb = props.cb ?props.cb: () => console.log("Center clicked");
+    const bottom = props.bottom?props.bottom:65;
+    console.log(HEIGHT);
     return (
-        <View className={[styles.container, {top: HEIGHT - bottom}]}>
+        <View style={[styles.container,{top: HEIGHT - bottom}]}>
             <MaterialIcons
-                nam="my-location"
+                name="my-location"
                 color="#000000"
                 size={25}
-                onPress={() => {}}
+                onPress={() => {cb()}}
             />
         </View >
     )
@@ -24,7 +26,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: 45,
         height: 45,
-        top: 110,
         left: WIDTH - 70,
         borderRadius: 50,
         backgroundColor: '#fff',
@@ -33,8 +34,8 @@ const styles = StyleSheet.create({
         elevation: 7,
         shadowRadius: 5,
         shadowOpacity: 1.0,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
-});
+})
 
 export default currentLocationButton;

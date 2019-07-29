@@ -17,6 +17,7 @@ export default class Map extends Component {
     }
 
     _getLocationAsync = async () => {
+        console.log("GetLocations Async");
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted')
             console.log('Permission not granted');
@@ -29,7 +30,7 @@ export default class Map extends Component {
             latitudeDelta: 0.0322,
             longitudeDelta: 0.0322
         }
-        this.setState({region:region});
+        this.setState({ region: region });
     }
     async componentDidMount() {
         // const { status } = await Permissions.getAsync(Permissions.LOCATION);
@@ -54,22 +55,30 @@ export default class Map extends Component {
         //     { enableHighAccuracy: true, timeout: 2000, maximumAge: 2000 }
         // )
     }
-
+    centerMap(){
+        const {latitude,longitude,latitudeDelta,longitudeDelta} = this.state.region;
+        this.map.animateToRegion({
+            latitude,
+            longitude,
+            latitudeDelta,
+            longitudeDelta
+        });
+    }
     render() {
-      
         return (
             <View style={Styles.container}>
                 <DestinationButton/>
-                <CurrentLocationButton/>
-           <MapView
-                showsUserLocation
-                style={Styles.map}
-                initialRegion={this.state.region}
-                showsCompass={true}
-                rotateEnabled={false}
-            >
-            </MapView>
+                <Text  style ={{top:40, zIndex:9}}>DEVESH IS HERE</Text>
+                <CurrentLocationButton cb={()=>{this.centerMap()}}/>
+                <MapView style={Styles.map}
+                    initialRegion={this.state.region}
+                    showsCompass={true}
+                    showsUserLocation={true}
+                    rotateEnabled={false}
+                    ref={(map)=>this.map = map}
+                />
             </View>
+
         );
     }
 
@@ -87,8 +96,9 @@ const Styles = StyleSheet.create(
             right: 0,
             bottom: 0
         },
-        container:{
-            flex:1
+        container: {
+            flex: 1,
+            top: 5
         }
 
     }
