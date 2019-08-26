@@ -1,20 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './app/component/login'
-import Map from './app/component/map';
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Map></Map>
-    </View>
-  );
-}
+import LoginScreen from './app/component/login'
+import MapScreen from './app/component/map';
+import Login from './app/Screens/login'
+import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
-const styles = StyleSheet.create({
-  container: {
-     flex: 1,
-     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
+const DrawerNavigator = createDrawerNavigator({
+  LoginScreen,
+  MapScreen,
+  Login,
 });
+
+const App = createAppContainer(DrawerNavigator);
+
+export default App;
+

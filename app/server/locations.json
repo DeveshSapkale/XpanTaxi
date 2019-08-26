@@ -1,0 +1,22 @@
+{
+    "mumbai" : {
+       "name" : "mumbai",
+       "latitude" : "19.0760",
+       "logngitude" : "72.8777",
+       "id": 1
+    },
+    
+    "pune" : {
+       "name" : "pune",
+       "latitude" : "19.0760",
+       "logngitude" : "72.8777",
+       "id": 2
+    },
+    
+    "nagpur" : {
+       "name" : "nagpur",
+       "latitude" : "19.0760",
+       "logngitude" : "72.8777",
+       "id": 3
+    }
+ }

@@ -6,7 +6,8 @@ import * as Location from 'expo-location';
 import DestinationButton from './DestinationButton';
 import CurrentLocationButton from './CurrentLocationButton';
 import Testapp from '../Test/Testapp';
-export default class Map extends Component {
+import {Ionicons} from '@expo/vector-icons';
+export default class MapScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +16,10 @@ export default class Map extends Component {
 
         this._getLocationAsync();
     }
-
+     static navigationOptions = {
+         title: 'Maps View',
+         drawerIcon: ({focused})=>(<Ionicons name="md-home" size={24} color={focused?'blue':'black'} />),
+     };
     _getLocationAsync = async () => {
         console.log("GetLocations Async");
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -66,9 +70,8 @@ export default class Map extends Component {
     }
     render() {
         return (
-            <View style={Styles.container}>
+            <View>
                 <DestinationButton/>
-                <Text  style ={{top:40, zIndex:9}}>DEVESH IS HERE</Text>
                 <CurrentLocationButton cb={()=>{this.centerMap()}}/>
                 <MapView style={Styles.map}
                     initialRegion={this.state.region}
@@ -81,7 +84,6 @@ export default class Map extends Component {
 
         );
     }
-
     onRegionChange(region) {
         this.setState({ region });
     }
@@ -91,14 +93,15 @@ const Styles = StyleSheet.create(
     {
         map: {
             position: 'absolute',
-            left: 0,
+            left: 1,
             top: 0,
             right: 0,
             bottom: 0
         },
         container: {
             flex: 1,
-            top: 5
+            top: 0,
+            opacity: 1
         }
 
     }

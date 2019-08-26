@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, Image, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 
-export default class Login extends Component {
+export default class LoginScreen extends Component {
 
     constructor(props) {
         super(props);
